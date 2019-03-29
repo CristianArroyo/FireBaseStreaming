@@ -1,7 +1,10 @@
 package com.example.cncarroyo.firebasestreaming;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 
@@ -39,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+           EstadoConexion();
 
         isPlaying= false;
 
@@ -179,8 +186,23 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+    }
 
 
+    public void EstadoConexion(){
+
+        ConnectivityManager connectivityManager =(ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo= connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo!=null && networkInfo.isConnected()){
+
+          //  Toast.makeText(getApplicationContext(),"Conectado a red de Internet",Toast.LENGTH_SHORT).show();
+
+        }else {
+
+            Toast.makeText(getApplicationContext(), "No se encuentra conectado a Internet", Toast.LENGTH_SHORT).show();
+        }
 
 
     }

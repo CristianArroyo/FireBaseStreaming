@@ -1,6 +1,9 @@
 package com.example.cncarroyo.firebasestreaming;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +33,8 @@ public class SubirImagenFireBase extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subir_imagen_fire_base);
+
+         EstadoConexion();
 
          mstore = FirebaseStorage.getInstance().getReference();
 
@@ -74,10 +79,24 @@ public class SubirImagenFireBase extends AppCompatActivity {
                 }
             });
 
-
         }
 
+    }
 
+    public void EstadoConexion(){
+
+        ConnectivityManager connectivityManager =(ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo= connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo!=null && networkInfo.isConnected()){
+
+          //  Toast.makeText(getApplicationContext(),"Conectado a red de Internet",Toast.LENGTH_SHORT).show();
+
+        }else {
+
+            Toast.makeText(getApplicationContext(), "No se encuentra conectado a Internet", Toast.LENGTH_SHORT).show();
+        }
 
 
     }

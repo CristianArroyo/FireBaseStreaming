@@ -65,4 +65,20 @@
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/btnLoginGoogl"
+        android:layout_width="584dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCrearUsuario"
+        app:layout_constraintVertical_bias="0.171"></com.google.android.gms.common.SignInButton>
+
+
 </android.support.constraint.ConstraintLayout>

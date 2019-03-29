@@ -2,8 +2,11 @@ package com.example.cncarroyo.firebasestreaming;
 
 import android.Manifest;
 import android.app.LauncherActivity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +47,7 @@ public class VerInformacionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_informacion);
 
+        EstadoConexion();
 
         FirebaseApp.initializeApp(this);
         dbFireBase = FirebaseDatabase.getInstance().getReference();
@@ -139,6 +143,24 @@ public class VerInformacionActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void EstadoConexion(){
+
+        ConnectivityManager connectivityManager =(ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo= connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo!=null && networkInfo.isConnected()){
+
+           // Toast.makeText(getApplicationContext(),"Conectado a red de Internet",Toast.LENGTH_SHORT).show();
+
+        }else {
+
+            Toast.makeText(getApplicationContext(), "No se encuentra conectado a Internet", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
 }
